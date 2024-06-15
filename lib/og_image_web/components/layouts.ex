@@ -18,39 +18,20 @@ defmodule OgImageWeb.Layouts do
   """
   def image_template_styles(assigns) do
     ~H"""
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <style>
-      /**
-       * Include Inter font.
-       */
-      @font-face {
-        font-family: InterVariable;
-        font-style: normal;
-        font-weight: 100 900;
-        font-display: swap;
-        src: url(<%= font_to_base64_url("InterVariable.woff2") %>) format("woff2");
-      }
-
-      @font-face {
-        font-family: InterVariable;
-        font-style: italic;
-        font-weight: 100 900;
-        font-display: swap;
-        src: url(<%= font_to_base64_url("InterVariable-Italic.woff2") %>) format("woff2");
-      }
-
       :root {
-        font-family: InterVariable, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
       }
 
       /* Include all styles from `app.css` */
 
       <%= raw(app_css()) %>
-
-      .bg-green-texture {
-        background-image: url(<%= image_to_base64_url("green-texture.jpg") %>);
-      }
     </style>
+    <script src="https://cdn.tailwindcss.com"></script>
     """
   end
 
@@ -58,27 +39,5 @@ defmodule OgImageWeb.Layouts do
 
   defp app_css do
     File.read!(Path.join([Application.app_dir(:og_image), "priv/static/assets/app.css"]))
-  end
-
-  defp font_to_base64_url(file_name) do
-    data =
-      [Application.app_dir(:og_image), "priv/fonts/#{file_name}"]
-      |> Path.join()
-      |> File.read!()
-      |> Base.encode64()
-
-    "data:font/woff2;charset=utf-8;base64,#{data}"
-  end
-
-  defp image_to_base64_url(file_name) do
-    content_type = MIME.from_path(file_name)
-
-    data =
-      [Application.app_dir(:og_image), "priv/static/images/#{file_name}"]
-      |> Path.join()
-      |> File.read!()
-      |> Base.encode64()
-
-    "data:#{content_type};base64,#{data}"
   end
 end

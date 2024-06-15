@@ -4,10 +4,13 @@ defmodule OgImageWeb.ImageController do
   import OgImageWeb.ImageHelpers
   import OgImageWeb.ImageRenderer
 
-  def show(conn, %{"template" => "light", "text" => text}) do
+  def show(conn, %{"template" => "steplist", "title" => title, "author" => author, "emoji" => emoji, "description" => description}) do
     conn
-    |> assign(:text, prepare_html(text))
-    |> render_image(:light)
+    |> assign(:text, prepare_html(title))
+    |> assign(:author, prepare_html(author))
+    |> assign(:emoji, prepare_html(emoji))
+    |> assign(:description, prepare_html(description))
+    |> render_image(:steplist)
   end
 
   def show(conn, %{"template" => "dark", "text" => text}) do
