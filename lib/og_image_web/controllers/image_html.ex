@@ -6,7 +6,7 @@ defmodule OgImageWeb.ImageHTML do
   """
   def steplist(assigns) do
     ~H"""
-    <body class=" h-screen">
+    <body class="h-screen">
       <div id="blue-bar" class="bg-blue-400 h-4 w-full"></div>
       <div id="headline-container" class="p-16">
         <div id="logo-container" class="flex justify-end p-2">
@@ -59,18 +59,3 @@ defmodule OgImageWeb.ImageHTML do
     """
   end
 end
-
-# <body class="bg-[#F8F2E6] flex flex-col h-screen">
-# <div class="shrink-0 pt-24 px-20 text-gray-900">
-#   <.steplist_logo />
-# </div>
-# <div class="grow flex items-center px-20">
-#   <h1 class="font-extrabold text-gray-900 text-[7rem] leading-[1.2]">
-#     <%= @text %>
-#   </h1>
-#   <p class="text-gray-700 text-[2rem] leading-[1.4] ml-10">
-#     <%= @author %>
-#     <%= @emoji %>
-#   </p>
-# </div>
-# </body>
